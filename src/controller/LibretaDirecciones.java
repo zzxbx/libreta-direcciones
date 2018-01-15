@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Persona;
+import view.VistaPersonaController;
 
 public class LibretaDirecciones extends Application {
 
@@ -26,7 +27,6 @@ public class LibretaDirecciones extends Application {
     private AnchorPane vistaPersona;
     private ObservableList datosPersona = FXCollections.observableArrayList();
 
-    
     //Datos de ejemplo
     public LibretaDirecciones() {
         datosPersona.add(new Persona("Manuel", "Ros Esteban"));
@@ -36,10 +36,11 @@ public class LibretaDirecciones extends Application {
         datosPersona.add(new Persona("Mónica", "de Santos Sánchez"));
     }
 
-        //Método para devolver los datos como lista observable de personas
+    //Método para devolver los datos como lista observable de personas
     public ObservableList getDatosPersona() {
         return datosPersona;
     }
+
     @Override
     public void start(Stage escenarioPrincipal) {
 
@@ -89,6 +90,10 @@ public class LibretaDirecciones extends Application {
 
         //Añado la vista al centro del layoutPrincipal
         layoutPrincipal.setCenter(vistaPersona);
+
+        //Doy acceso al controlador VistaPersonaCOntroller a LibretaDirecciones
+        VistaPersonaController controller = loader.getController();
+        controller.setLibretaDirecciones(this);
 
     }
 
